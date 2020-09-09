@@ -38,11 +38,11 @@ namespace Services
                 if (result.Succeeded)
                     return true;
 
-                return result;
-
+                return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return false;
             }
         }
