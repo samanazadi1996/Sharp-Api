@@ -32,6 +32,10 @@ namespace MyApi.Controllers
         }
         public async Task<ApiResult<RegisterUserDto>> Register(RegisterUserDto user)
         {
+            var person = await _userManager.FindByNameAsync(user.Email);
+            if (!(person is null))
+                throw new BadRequestException("نام کاربری تکراری است");
+
             var result = await _userService.RegisterUser(user);
             if (result)
                 return Ok();

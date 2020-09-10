@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Services.Dto
 {
-    public class RegisterUserDto /*: IValidatableObject*/
+    public class RegisterUserDto/* : IValidatableObject*/
     {
         [Required]
         [StringLength(500)]
@@ -36,9 +36,6 @@ namespace Services.Dto
 
         //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         //{
-        //    var db = new Data.ApplicationDbContext();
-        //    if (db.Users.Any(p => p.UserName.ToLower()==UserName.ToLower()))
-        //        yield return new ValidationResult("نام کاربری تکراری است");
         //}
     }
 }

@@ -27,21 +27,16 @@ namespace Sharp_Api
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>
-    (
-    options => options.UseSqlServer("Data Source =.; Initial Catalog = SharpApiDb; Integrated Security = true")
-    );
+            services.AddDbContext<ApplicationDbContext>(
+                    options => options.UseSqlServer("Data Source =.; Initial Catalog = SharpApiDb; Integrated Security = true")
+                );
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
             services.AddCustomIdentity(_SiteSettings.identitySettings);
-            services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IAccountService, AccountService>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUnitOfWork, ApplicationDbContext>();
-            services.AddSingleton<ISecurityHelper, SecurityHelper>();
-            services.AddJwtAuthentication(_SiteSettings.JwtSettings);
-            services.AddMvc();
-
+            services.AddJwtAuthentication(_SiteSettings.JwtSettings);    
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

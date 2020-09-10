@@ -34,10 +34,11 @@ namespace Services
                 var db = new ApplicationDbContext();
                 var user = await ConvertRegisterDtoToEntity(userDto);
                 var result = await _userManager.CreateAsync(user, user.PasswordHash);
-                _logger.LogInformation("Registering - " + userDto.Email);
                 if (result.Succeeded)
+                {
+                    _logger.LogInformation("Registering - " + userDto.Email);      
                     return true;
-
+                }
                 return false;
             }
             catch (Exception ex)
