@@ -1,19 +1,12 @@
-﻿using Common;
-using Data;
-using Services.Dto;
+﻿using Data;
 using Entities;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Common.Exceptions;
+using Microsoft.Extensions.Logging;
+using Services.Dto;
+using System;
+using System.Threading.Tasks;
+
 
 namespace Services
 {
@@ -21,18 +14,21 @@ namespace Services
     {
         private readonly ILogger<AccountService> _logger;
         private readonly UserManager<User> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountService(ILogger<AccountService> logger, UserManager<User> userManager)
+        public AccountService(ILogger<AccountService> logger, UserManager<User> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
-        public async Task<bool> RegisterUser(RegisterUserDto userDto)
+        public Task<User> GetCurentUserAsync() => _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+        public async Task<bool> RegisterUserAsync(RegisterUserDto userDto)
         {
             try
             {
                 var db = new ApplicationDbContext();
-                var user = await ConvertRegisterDtoToEntity(userDto);
+                var user = await ConvertRegisterDtoToEntityAsync(userDto);
                 var result = await _userManager.CreateAsync(user, user.PasswordHash);
                 if (result.Succeeded)
                 {
@@ -47,7 +43,7 @@ namespace Services
                 return false;
             }
         }
-        private async Task<User> ConvertRegisterDtoToEntity(RegisterUserDto userDto)
+        private async Task<User> ConvertRegisterDtoToEntityAsync(RegisterUserDto userDto)
         {
             var user = new User()
             {

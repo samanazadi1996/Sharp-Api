@@ -1,5 +1,4 @@
 using Common;
-using Common.Utilities;
 using Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,11 +34,10 @@ namespace Sharp_Api
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUnitOfWork, ApplicationDbContext>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddJwtAuthentication(_SiteSettings.JwtSettings);    
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
