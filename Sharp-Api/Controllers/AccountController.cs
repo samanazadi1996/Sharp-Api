@@ -56,7 +56,7 @@ namespace MyApi.Controllers
             return result;
         }
         [Authorize]
-        public async Task<ApiResult<User>> test(string a)
+        public async Task<ApiResult<User>> GetCurentAccount()
         {
             var user = await _accountService.GetCurentUserAsync();
             return user;
