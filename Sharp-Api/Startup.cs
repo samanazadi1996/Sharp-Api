@@ -10,6 +10,9 @@ using Microsoft.Extensions.Hosting;
 using Services;
 using WebFramework.Configuration;
 using WebFramework.Middlewares;
+using Hangfire;
+using Hangfire.SqlServer;
+using System;
 
 namespace Sharp_Api
 {
@@ -27,7 +30,7 @@ namespace Sharp_Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(
-                    options => options.UseSqlServer("Data Source =.; Initial Catalog = SharpApiDb; Integrated Security = true")
+                    options => options.UseSqlServer(_SiteSettings.DataBaseConectionString)
                 );
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
             services.AddCustomIdentity(_SiteSettings.identitySettings);
@@ -35,8 +38,11 @@ namespace Sharp_Api
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUnitOfWork, ApplicationDbContext>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddJwtAuthentication(_SiteSettings.JwtSettings);    
+            services.AddJwtAuthentication(_SiteSettings.JwtSettings);
+            services.AddHangfireServices(_SiteSettings);
             services.AddMvc(option => option.EnableEndpointRouting = false);
+
+
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -56,7 +62,10 @@ namespace Sharp_Api
             app.UseAuthentication();
 
             app.UseHttpsRedirection();
+            app.UseHangfireDashboard();
+
             app.UseMvc();
+
 
         }
     }

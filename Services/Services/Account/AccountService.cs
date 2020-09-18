@@ -28,7 +28,7 @@ namespace Services
             try
             {
                 var db = new ApplicationDbContext();
-                var user = await ConvertRegisterDtoToEntityAsync(userDto);
+                var user = ConvertRegisterDtoToEntity(userDto);
                 var result = await _userManager.CreateAsync(user, user.PasswordHash);
                 if (result.Succeeded)
                 {
@@ -43,7 +43,7 @@ namespace Services
                 return false;
             }
         }
-        private async Task<User> ConvertRegisterDtoToEntityAsync(RegisterUserDto userDto)
+        private User ConvertRegisterDtoToEntity(RegisterUserDto userDto)
         {
             var user = new User()
             {

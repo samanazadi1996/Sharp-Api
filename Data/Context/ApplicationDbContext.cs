@@ -9,7 +9,7 @@ namespace Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SharpApiDb;Integrated Security=true;");
+            //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SharpApiDb;Integrated Security=true;");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -31,8 +31,31 @@ namespace Data
         {
 
         }
-        public virtual DbSet<User> Users { set; get; }
-        public virtual DbSet<Role> Roles { set; get; }
+
+        private DbSet<User> users;
+
+        public virtual DbSet<User> GetUsers()
+        {
+            return users;
+        }
+
+        public virtual void SetUsers(DbSet<User> value)
+        {
+            users = value;
+        }
+
+        private DbSet<Role> roles;
+
+        public virtual DbSet<Role> GetRoles()
+        {
+            return roles;
+        }
+
+        public virtual void SetRoles(DbSet<Role> value)
+        {
+            roles = value;
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
 

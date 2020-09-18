@@ -25,9 +25,11 @@ namespace WebFramework.Middlewares
     public class CustomExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
+        [Obsolete]
         private readonly IHostingEnvironment _env;
         private readonly ILogger<CustomExceptionHandlerMiddleware> _logger;
 
+        [Obsolete]
         public CustomExceptionHandlerMiddleware(RequestDelegate next,
             IHostingEnvironment env,
             ILogger<CustomExceptionHandlerMiddleware> logger)
@@ -37,6 +39,7 @@ namespace WebFramework.Middlewares
             _logger = logger;
         }
 
+        [Obsolete]
         public async Task Invoke(HttpContext context)
         {
             string message = null;
