@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System.Collections.Generic;
 using System.Linq;
 using WebFramework.Api;
-using Common.ApiResultCodeEnaum;
+using Common.ApiResultCodeEnum;
 
 namespace WebFramework.Filters
 {

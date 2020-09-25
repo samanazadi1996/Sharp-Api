@@ -1,7 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 
-namespace Common.ApiResultCodeEnaum
+namespace Common.ApiResultCodeEnum
 {
     public enum ApiResultStatusCode
     {

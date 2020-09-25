@@ -9,7 +9,7 @@ using Common.Exceptions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
-using Common.ApiResultCodeEnaum;
+using Common.ApiResultCodeEnum;
 using WebFramework.Api;
 
 namespace WebFramework.Middlewares

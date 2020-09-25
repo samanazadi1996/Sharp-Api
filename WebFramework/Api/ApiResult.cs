@@ -1,4 +1,4 @@
-using Common.ApiResultCodeEnaum;
+using Common.ApiResultCodeEnum;
 using Common.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;

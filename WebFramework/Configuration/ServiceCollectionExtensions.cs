@@ -1,8 +1,7 @@
 ﻿using Common;
-using Common.ApiResultCodeEnaum;
+using Common.ApiResultCodeEnum;
 using Common.Exceptions;
 using Common.Utilities;
-using Data.Repositories;
 using Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

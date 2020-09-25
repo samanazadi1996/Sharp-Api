@@ -1,4 +1,4 @@
-﻿using Common.ApiResultCodeEnaum;
+﻿using Common.ApiResultCodeEnum;
 using System;
 
 namespace Common.Exceptions
