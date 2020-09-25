@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -197,6 +197,14 @@ namespace Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            #region Values
+            migrationBuilder.InsertData("AspNetRoles", new[] { "Name", "NormalizedName", "Description" }, new object[] { "Admin", "Admin", "مدیریت" });
+            migrationBuilder.InsertData("AspNetUsers", new[] { "Email", "LastName", "FirstName", "EmailConfirmed", "PhoneNumber", "PhoneNumberConfirmed", "UserName", "Gender", "DateOfBirth", "PasswordHash", "TwoFactorEnabled", "LockoutEnabled", "AccessFailedCount", "NormalizedUserName", "NormalizedEmail" },
+                new object[] { "admin@admin.com", "Admin", "Admin", true, "09304241296", true, "admin", "1", "1996-8-4", "AQAAAAEAACcQAAAAELi6wXLqeHxEbmJg6ufibRt/GTFeYZCIKdKLHikcV+PezV8/I4571RYg4sSbty4/NA==", false, true, "0", "ADMIN", "ADMIN@ADMIN.COM" });
+            migrationBuilder.InsertData("AspNetUserRoles", new[] { "UserId", "RoleId" }, new object[] { "1", "1" });
+            #endregion
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

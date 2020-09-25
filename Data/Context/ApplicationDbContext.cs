@@ -5,11 +5,11 @@ using System;
 
 namespace Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User,Role,int>, IUnitOfWork
+    public class ApplicationDbContext : IdentityDbContext<User, Role, int>, IUnitOfWork
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SharpApiDb;Integrated Security=true;");
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SharpApiDb;Integrated Security=true;");
             base.OnConfiguring(optionsBuilder);
         }
 
