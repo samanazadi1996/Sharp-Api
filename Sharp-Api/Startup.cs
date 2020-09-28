@@ -1,5 +1,6 @@
 using Common;
 using Data;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,9 +11,6 @@ using Microsoft.Extensions.Hosting;
 using Services;
 using WebFramework.Configuration;
 using WebFramework.Middlewares;
-using Hangfire;
-using Hangfire.SqlServer;
-using System;
 
 namespace Sharp_Api
 {
@@ -29,6 +27,7 @@ namespace Sharp_Api
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerServices();
             services.AddDbContext<ApplicationDbContext>(
                     options => options.UseSqlServer(_SiteSettings.DataBaseConectionString)
                 );
@@ -46,7 +45,7 @@ namespace Sharp_Api
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
+            app.UseCustomSwagger();
             app.UseCustomExceptionHandler();
 
             if (env.IsDevelopment())

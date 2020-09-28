@@ -30,6 +30,7 @@ namespace MyApi.Controllers
             _jwtService = jwtService;
             _accountService = AccountService;
         }
+        [HttpPost]
         public async Task<ApiResult<RegisterUserDto>> Register(RegisterUserDto user)
         {
             var person = await _userManager.FindByNameAsync(user.Email);
@@ -41,9 +42,10 @@ namespace MyApi.Controllers
                 return Ok();
             return BadRequest();
         }
+        [HttpPost]
         public async Task<ApiResult<string>> Gettoken(LoginDto user)
         {
-            var person =await _userManager.FindByNameAsync(user.Email);
+            var person = await _userManager.FindByNameAsync(user.Email);
             if (person is null)
                 throw new BadRequestException("نام کاربری اشتباه است");
             var IsPasswordValid = await _userManager.CheckPasswordAsync(person, user.Password);
@@ -55,7 +57,9 @@ namespace MyApi.Controllers
                 return BadRequest();
             return result;
         }
+
         [Authorize]
+        [HttpGet]
         public async Task<ApiResult<User>> GetCurentAccount()
         {
             var user = await _accountService.GetCurentUserAsync();

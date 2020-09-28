@@ -200,8 +200,8 @@ namespace Data.Migrations
 
             #region Values
             migrationBuilder.InsertData("AspNetRoles", new[] { "Name", "NormalizedName", "Description" }, new object[] { "Admin", "Admin", "مدیریت" });
-            migrationBuilder.InsertData("AspNetUsers", new[] { "Email", "LastName", "FirstName", "EmailConfirmed", "PhoneNumber", "PhoneNumberConfirmed", "UserName", "Gender", "DateOfBirth", "PasswordHash", "TwoFactorEnabled", "LockoutEnabled", "AccessFailedCount", "NormalizedUserName", "NormalizedEmail" },
-                new object[] { "admin@admin.com", "Admin", "Admin", true, "09304241296", true, "admin", "1", "1996-8-4", "AQAAAAEAACcQAAAAELi6wXLqeHxEbmJg6ufibRt/GTFeYZCIKdKLHikcV+PezV8/I4571RYg4sSbty4/NA==", false, true, "0", "ADMIN", "ADMIN@ADMIN.COM" });
+            migrationBuilder.InsertData("AspNetUsers", new[] { "Email", "LastName", "FirstName", "EmailConfirmed", "PhoneNumber", "PhoneNumberConfirmed", "UserName", "Gender", "DateOfBirth", "PasswordHash", "TwoFactorEnabled", "LockoutEnabled", "AccessFailedCount", "NormalizedUserName", "NormalizedEmail", "SecurityStamp", "ConcurrencyStamp" },
+                new object[] { "admin@admin.com", "Admin", "Admin", true, "09304241296", true, "admin@admin.com", "1", "1996-7-4", "AQAAAAEAACcQAAAAELi6wXLqeHxEbmJg6ufibRt/GTFeYZCIKdKLHikcV+PezV8/I4571RYg4sSbty4/NA==", false, true, "0", "admin@admin.com", "admin@admin.com", "7NRUCXIHVEGPT6lDWAQ34SUHJ5YQIPWR", "de3d0e08-0cf2-4968-990b-58d4220da24e" });
             migrationBuilder.InsertData("AspNetUserRoles", new[] { "UserId", "RoleId" }, new object[] { "1", "1" });
             #endregion
 
