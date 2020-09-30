@@ -19,9 +19,10 @@ namespace WebFramework.Configuration
         {
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(option =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sharp API V1");
+                option.SwaggerEndpoint("/swagger/v1/swagger.json", "Sharp API V1");
+                option.RoutePrefix = string.Empty;
             });
 
         }
