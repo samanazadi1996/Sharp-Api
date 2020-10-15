@@ -8,15 +8,11 @@ using Services;
 using Services.Dto;
 using System.Threading.Tasks;
 using WebFramework.Api;
-using WebFramework.Filters;
 
-namespace MyApi.Controllers
+namespace Sharp_Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    [ApiResultFilter]
 
-    public class AccountController : ControllerBase
+    public class AccountController : BaseController
     {
         private readonly IJwtService _jwtService;
         private readonly IAccountService _accountService;
@@ -64,6 +60,11 @@ namespace MyApi.Controllers
         {
             var user = await _accountService.GetCurentUserAsync();
             return user;
+        }
+        [HttpGet]
+        public async Task<ApiResult<string>> a()
+        {
+            return Ok("saman");
         }
     }
 }
