@@ -1,3 +1,4 @@
+using Common.Utilities;
 using Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -32,39 +33,20 @@ namespace Data
 
         }
 
-        private DbSet<User> users;
 
-        public virtual DbSet<User> GetUsers()
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            return users;
+            base.OnModelCreating(modelBuilder);
+
+            var entitiesAssembly = typeof(IEntity).Assembly;
+
+            modelBuilder.RegisterAllEntities<IEntity>(entitiesAssembly);
+            modelBuilder.RegisterEntityTypeConfiguration(entitiesAssembly);
+            modelBuilder.AddRestrictDeleteBehaviorConvention();
+            modelBuilder.AddSequentialGuidForIdConvention();
+            modelBuilder.AddPluralizingTableNameConvention();
         }
 
-        public virtual void SetUsers(DbSet<User> value)
-        {
-            users = value;
-        }
-
-        private DbSet<Role> roles;
-
-        public virtual DbSet<Role> GetRoles()
-        {
-            return roles;
-        }
-
-        public virtual void SetRoles(DbSet<Role> value)
-        {
-            roles = value;
-        }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-
-            builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new RoleConfiguration());
-
-            // it should be placed here, otherwise it will rewrite the following settings!
-            base.OnModelCreating(builder);
-        }
         #region IUnitOfWork
 
         DbSet<TEntity> IUnitOfWork.Set<TEntity>()

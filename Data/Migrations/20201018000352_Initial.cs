@@ -71,7 +71,7 @@ namespace Data.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,7 +92,7 @@ namespace Data.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,7 +112,7 @@ namespace Data.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -130,13 +130,13 @@ namespace Data.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,7 +156,7 @@ namespace Data.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -197,14 +197,6 @@ namespace Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            #region Values
-            migrationBuilder.InsertData("AspNetRoles", new[] { "Name", "NormalizedName", "Description" }, new object[] { "Admin", "Admin", "مدیریت" });
-            migrationBuilder.InsertData("AspNetUsers", new[] { "Email", "LastName", "FirstName", "EmailConfirmed", "PhoneNumber", "PhoneNumberConfirmed", "UserName", "Gender", "DateOfBirth", "PasswordHash", "TwoFactorEnabled", "LockoutEnabled", "AccessFailedCount", "NormalizedUserName", "NormalizedEmail", "SecurityStamp", "ConcurrencyStamp" },
-                new object[] { "admin@admin.com", "Admin", "Admin", true, "09304241296", true, "admin@admin.com", "1", "1996-7-4", "AQAAAAEAACcQAAAAELi6wXLqeHxEbmJg6ufibRt/GTFeYZCIKdKLHikcV+PezV8/I4571RYg4sSbty4/NA==", false, true, "0", "admin@admin.com", "admin@admin.com", "7NRUCXIHVEGPT6lDWAQ34SUHJ5YQIPWR", "de3d0e08-0cf2-4968-990b-58d4220da24e" });
-            migrationBuilder.InsertData("AspNetUserRoles", new[] { "UserId", "RoleId" }, new object[] { "1", "1" });
-            #endregion
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
