@@ -17,7 +17,7 @@ namespace Data.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0-preview.8.20407.4");
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("Entities.Role", b =>
                 {

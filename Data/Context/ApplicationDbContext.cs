@@ -11,6 +11,7 @@ namespace Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SharpApiDb;Integrated Security=true;");
+            optionsBuilder.UseLazyLoadingProxies();
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -37,7 +38,7 @@ namespace Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            
             var entitiesAssembly = typeof(IEntity).Assembly;
 
             modelBuilder.RegisterAllEntities<IEntity>(entitiesAssembly);

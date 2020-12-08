@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace Entities
 {
     public class User : IdentityUser<int>, IEntity
@@ -18,11 +19,5 @@ namespace Entities
         [Required]
         public DateTime DateOfBirth { get; set; }
         public GenderType Gender { get; set; }
-    }
-    public class UserConfiguration : IEntityTypeConfiguration<User>
-    {
-        public void Configure(EntityTypeBuilder<User> builder)
-        {
-        }
     }
 }

@@ -10,11 +10,4 @@ namespace Entities
         [StringLength(50)]
         public string Description { get; set; }
     }
-    public class RoleConfiguration : IEntityTypeConfiguration<Role>
-    {
-        public void Configure(EntityTypeBuilder<Role> builder)
-        {
-        }
-    }
-
 }
