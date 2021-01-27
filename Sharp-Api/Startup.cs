@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Services;
 using WebFramework.Configuration;
 using WebFramework.Middlewares;
@@ -40,7 +41,10 @@ namespace Sharp_Api
             services.AddJwtAuthentication(_SiteSettings.JwtSettings);
             services.AddHangfireServices(_SiteSettings);
             services.AddMvc(option => option.EnableEndpointRouting = false);
-
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.AddSeq();
+            });
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

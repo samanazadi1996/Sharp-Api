@@ -64,6 +64,7 @@ namespace Sharp_Api.Controllers
         [HttpGet]
         public async Task<ApiResult<string>> a()
         {
+            _logger.LogError("test seq logger");
             return Ok("saman");
         }
     }

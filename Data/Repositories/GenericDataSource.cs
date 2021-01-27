@@ -71,8 +71,6 @@ namespace Data.Repositories
         {
             _uow.Insert(data);
             return await _uow.SaveChangesAsync() > 0;
-
-
         }
 
         public virtual bool UpdateData(int id, T data, Func<T, bool> action = null)
