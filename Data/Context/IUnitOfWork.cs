@@ -18,11 +18,11 @@ namespace Data
 
 
 
-        void MarkAsChanged<TEntity>(TEntity entity) where TEntity : class;
+        void Update<TEntity>(TEntity entity) where TEntity : class;
 
-        void MarkAsDeleted<TEntity>(TEntity entity) where TEntity : class;
+        void Delete<TEntity>(TEntity entity) where TEntity : class;
 
-        void MarkAsAdd<TEntity>(TEntity entity) where TEntity : class;
+        void Insert<TEntity>(TEntity entity) where TEntity : class;
 
         int SaveAllChanges();
 

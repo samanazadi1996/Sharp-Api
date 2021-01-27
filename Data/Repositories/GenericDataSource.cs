@@ -69,7 +69,7 @@ namespace Data.Repositories
 
         public virtual async Task<bool> AddData(T data, Func<T, bool> action = null)
         {
-            _uow.MarkAsAdd(data);
+            _uow.Insert(data);
             return await _uow.SaveChangesAsync() > 0;
 
 

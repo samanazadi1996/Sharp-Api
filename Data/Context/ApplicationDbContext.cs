@@ -10,30 +10,16 @@ namespace Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SharpApiDb;Integrated Security=true;");
+            //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SharpApiDb;Integrated Security=true;");
             optionsBuilder.UseLazyLoadingProxies();
             base.OnConfiguring(optionsBuilder);
-        }
-
-        static ApplicationDbContext()
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                context.Database.Migrate();
-            }
-
         }
 
         public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {
-
+            Database.Migrate();
         }
-        public ApplicationDbContext() : base()
-        {
-
-        }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -68,17 +54,17 @@ namespace Data
             }
         }
 
-        public void MarkAsChanged<TEntity>(TEntity entity) where TEntity : class
+        public void Update<TEntity>(TEntity entity) where TEntity : class
         {
             Entry(entity).State = EntityState.Modified;
         }
 
-        public void MarkAsDeleted<TEntity>(TEntity entity) where TEntity : class
+        public void Delete<TEntity>(TEntity entity) where TEntity : class
         {
             Entry(entity).State = EntityState.Deleted;
         }
 
-        public void MarkAsAdd<TEntity>(TEntity entity) where TEntity : class
+        public void Insert<TEntity>(TEntity entity) where TEntity : class
         {
             Entry(entity).State = EntityState.Added;
         }
